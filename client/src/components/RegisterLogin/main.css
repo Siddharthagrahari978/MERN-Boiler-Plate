@@ -1,0 +1,87 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
+.body {
+  background: -webkit-gradient(
+      linear,
+      left top,
+      left bottom,
+      from(rgba(0, 0, 0, 0.4)),
+      to(rgba(0, 0, 0, 0.4))
+    ),
+    url(./background.jpg);
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url(./background.jpg);
+  background-size: cover;
+  opacity: 0.95;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  font-family: "Nunito", sans-serif;
+}
+
+.body main {
+  height: 100vh;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.container {
+  background-color: #36393f;
+  color: white;
+  border-radius: 0.5em;
+  padding: 1.8rem;
+}
+
+.container p {
+  color: rgba(255, 255, 255, 0.68);
+  margin: 0.5rem;
+}
+
+.container form input {
+  border: none;
+  color: rgba(255, 255, 255, 0.823) !important;
+}
+
+.container form input,
+.container form input:hover,
+.container form input:focus {
+  background-color: #46484e;
+}
+
+.container form input:hover,
+.container form input:focus {
+  border: 1px solid #677bc4;
+}
+
+.container form input:focus {
+  outline: none !important;
+}
+
+.container form a {
+  color: #677bc4;
+}
+
+.container form button,
+.container form button:focus {
+  background-color: #677bc4;
+  border: none;
+  color: white;
+  border-radius: 0.2rem;
+  font-weight: bold;
+  outline: none;
+}
+
+.container form button:hover {
+  background-color: #677bc4bd;
+  color: white;
+}
+
+@media screen and (max-width: 577px) {
+  .container {
+    height: 100vh;
+    padding: 0;
+    padding-top: 1rem;
+    border-radius: 0;
+  }
+}
+/*# sourceMappingURL=main.css.map */
