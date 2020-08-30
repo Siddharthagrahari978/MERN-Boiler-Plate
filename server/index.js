@@ -20,18 +20,13 @@ mongoose
   .then(() => console.log("DB Connected..."))
   .catch((err) => console.error(err));
 
-//! Sending result for requesting with "/"
-app.get("/", (req, res) => {
-  res.send("Hello World");
-});
-
 //!
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
 //! MiddleWare Authentication
-app.get("/api/user/auth", auth, (req, res) => {
+app.get("/api/users/auth", auth, (req, res) => {
   res.status(200).json({
     _id: req.user._id,
     isAuth: true,
@@ -43,17 +38,17 @@ app.get("/api/user/auth", auth, (req, res) => {
 });
 
 //! Route to register function
-app.post("/api/users/register", auth, (req, res) => {
+app.post("/api/users/register", (req, res) => {
   const user = new User(req.body);
 
   user.save((err, doc) => {
-    if (err) return res.json({ success: false, err });
+    if (err) return res.json({ success: false, error: err });
     res.status(200).json({ success: true, userData: doc });
   });
 });
 
 //! Route to login function
-app.post("/api/user/login", (req, res) => {
+app.post("/api/users/login", (req, res) => {
   // find email
   User.findOne({ email: req.body.email }, (err, user) => {
     if (!user) {
@@ -67,7 +62,7 @@ app.post("/api/user/login", (req, res) => {
       if (!isMatch) {
         return res.json({
           loginSuccess: false,
-          message: `There is somthing wwrong with password ${err}`,
+          message: `There is somthing wrong with password`,
         });
       }
       // generate token
@@ -83,7 +78,7 @@ app.post("/api/user/login", (req, res) => {
 });
 
 //! Route to logout function
-app.get("/api/user/logout", auth, (req, res) => {
+app.get("/api/users/logout", auth, (req, res) => {
   User.findOneAndUpdate({ _id: req.user._id }, { token: "" }, (err, doc) => {
     if (err) return res.json({ success: false, err });
     return res.status(200).send({ success: true, doc });
